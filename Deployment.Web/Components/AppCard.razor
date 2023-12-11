@@ -1,0 +1,12 @@
+﻿
+<FluentCard class="fluent-card" @onclick="@(() => HandleCellClick(_application.Code))">
+    <div align="center">
+        <FluentIcon Value="@(new Icons.Regular.Size48.Cloud())"></FluentIcon>
+    </div>
+        <div align="center">
+            <h1>@_application.Name</h1>
+        </div>
+        <div align="center">
+            <p>@_application.Code</p>
+        </div>
+</FluentCard>

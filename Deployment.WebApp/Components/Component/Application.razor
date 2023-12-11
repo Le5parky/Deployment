@@ -1,0 +1,65 @@
+﻿@page "/application/{Code}"
+
+@inject ApplicationService ApplicationService
+
+<PageTitle>Application</PageTitle>
+
+@if (_application == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h1>@_application.Name</h1>
+
+    <div>
+        <div class="app_page_lable">
+            <FluentLabel style="align-items: right;">Application Name : </FluentLabel>
+        </div>
+        <div class="app_page_text">
+            <FluentTextField Value="@_application.Name"> </FluentTextField>
+        </div>
+    </div>
+
+    <div>
+        <div class="app_page_lable">
+            <FluentLabel>Application Code : </FluentLabel>
+        </div>
+        <div class="app_page_text">
+            <FluentTextField Value="@_application.Code"></FluentTextField>
+        </div>
+    </div>
+    <div>
+        <div class="app_page_lable">
+            <FluentLabel>Application Tag : </FluentLabel>
+        </div>
+        <div class="app_page_text">
+            <FluentTextField Value="@_application.Tag"></FluentTextField>
+        </div>
+    </div>
+    <div>
+        <div class="app_page_lable">
+            <FluentLabel>DropZone : </FluentLabel>
+        </div>
+        <div class="app_page_text">
+            <FluentTextField Value="@_application.DropZone"></FluentTextField>
+        </div>
+    </div>
+    <div>
+        <div class="app_page_lable">
+            <FluentLabel>Mail To : </FluentLabel>
+        </div>
+        <div class="app_page_text">
+            <FluentTextField Value="@_application.MailTo"></FluentTextField>
+        </div>
+    </div>
+    <div>
+        <div class="app_page_lable">
+            <FluentLabel>Mail CC : </FluentLabel>
+        </div>
+        <div class="app_page_text">
+            <FluentTextField Value="@_application.MailCC"></FluentTextField>
+        </div>
+    </div>
+
+}

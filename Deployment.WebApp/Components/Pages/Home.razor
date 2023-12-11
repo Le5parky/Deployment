@@ -1,0 +1,20 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+@inject BaseLayerLuminance BaseLayerLuminance
+@inject AccentBaseColor AccentBaseColor
+
+<PageTitle>Home</PageTitle>
+<div style="margin: 10px">
+    <AppList />
+</div>
+@code{
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await BaseLayerLuminance.WithDefault((float)0.15);
+            StateHasChanged();
+        }
+    }
+}

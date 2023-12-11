@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+	  <PrivateAssets>all</PrivateAssets>
+	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+	<PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.*-* " />
+	<PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.1.0" />
+	<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Deployment.Common\Deployment.Common.csproj" />
+    <ProjectReference Include="..\Deployment.DAL\Deployment.DAL.csproj" />
+    <ProjectReference Include="..\Deployment.DI.Extensions\Deployment.DependencyInjection.Extensions.csproj" />
+    <ProjectReference Include="..\Deployment.DomainModel\Deployment.DomainModel.csproj" />
+    <ProjectReference Include="..\Deployment.Dto\Deployment.Dto.csproj" />
+    <ProjectReference Include="..\Deployment.Infrastructure\Deployment.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

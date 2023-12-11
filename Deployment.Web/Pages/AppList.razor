@@ -1,0 +1,20 @@
+﻿@page "/apps"
+
+@using Deployment.Web.Components;
+
+<h3>Applications</h3>
+
+@if (_applications == null)
+{
+    <p><em>Loading...</em></p>
+}
+
+else
+{
+    <FluentStack class="horizontal-list" Orientation="Orientation.Horizontal">   
+        @foreach (var app in _applications)
+        {
+            <AppCard Application="@app"></AppCard>
+        }
+    </FluentStack>
+}

@@ -1,0 +1,8 @@
+*.suo
+*.vsidx
+**/.vs
+**/.vscode
+**/bin
+**/obj
+
+.fake

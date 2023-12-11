@@ -1,0 +1,41 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>Deployment.Web</PageTitle>
+
+<div style="height: 100%;">
+    <FluentMainLayout NavMenuTitle="Menu" >
+        <Header style="background: darkgrey"><h4>Deployment</h4>  <FluentSpacer /> About</Header>
+        <Body style="height: 100%">@Body</Body>
+        <NavMenuContent>
+            <FluentNavLink Href="/"Style="background-color: transparent" Icon="@(new Icons.Regular.Size24.Home())">Home</FluentNavLink>
+            <FluentNavLink Href="/combo" Style="background-color: transparent" Icon="@(new Icons.Regular.Size24.Cloud())">Applications</FluentNavLink>
+        </NavMenuContent>
+    </FluentMainLayout>
+    
+    
+@* 
+    <FluentLayout Style="margin-top: 0px; background-color: lightgray; height: 100%; width: 100%" >
+        <FluentHeader >
+            <a href="/" class="fluent_header">Deployment</a>
+            <FluentSpacer/>
+            <a href="/about" class="fluent_header">About</a>
+        </FluentHeader>
+        <FluentStack Orientation="Orientation.Horizontal" Width="100%" Style="width: 100%;">
+            <NavMenuContent >
+                <FluentNavMenu Width="250">
+                    <FluentNavLink Href="/"Style="background-color: transparent" Icon="@(new Icons.Regular.Size24.Home())">Home</FluentNavLink>
+                    <FluentNavLink Href="/combo" Style="background-color: transparent" Icon="@(new Icons.Regular.Size24.Cloud())">Applications</FluentNavLink>
+                </FluentNavMenu>
+            </NavMenuContent>
+            <FluentBodyContent>
+                @Body
+            </FluentBodyContent>
+        </FluentStack>
+    </FluentLayout> *@
+</div>
+
+
+<FluentToastProvider />
+<FluentDialogProvider />
+<FluentTooltipProvider />
+<FluentMessageBarProvider />

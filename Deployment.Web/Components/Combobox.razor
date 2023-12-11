@@ -1,0 +1,47 @@
+@page "/combo"
+
+<PageTitle>ComboBox</PageTitle>
+
+@using Deployment.Web.Data
+@using System.Collections.Generic
+
+@inject CheckboxService CheckboxService
+
+<h3>Checkbox List with Description Labels</h3>
+
+@foreach (var item in CheckboxService.CheckboxItems)
+{
+    <div>
+        <input type="checkbox" @bind-value="@item.IsChecked" />
+        <label>@item.Label</label>
+        <div class="horizontal-list">
+            @foreach (var parameter in item.Parameters)
+            {
+                <div class="horizontal-list-item">
+                    <label class="labe-bold-item">@parameter</label>;
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<AnotherComponent AddDesctiprtionClicked="UpdateParameter"/>
+
+@code{
+
+    protected override void OnInitialized()
+    {
+        CheckboxService.OnCheckboxUpdate += UpdateParameter;
+    }
+
+    private void UpdateParameter(string value)
+    {
+        foreach(var cb in CheckboxService.CheckboxItems)
+        {
+            if(cb.IsChecked)
+                cb.Parameters.Add(value);
+        }
+        StateHasChanged(); // Forces the component to refresh
+    }
+}
+
