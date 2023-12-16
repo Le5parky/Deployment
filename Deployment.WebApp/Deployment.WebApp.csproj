@@ -12,9 +12,8 @@
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
-	<PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="3.5.0" />
-	<PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.2.0" />
-	<PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.2.0" />
+	<PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.*-* " />
+	<PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.1.0" />
 	<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
   </ItemGroup>
 
@@ -25,9 +24,5 @@
     <ProjectReference Include="..\Deployment.DomainModel\Deployment.DomainModel.csproj" />
     <ProjectReference Include="..\Deployment.Dto\Deployment.Dto.csproj" />
     <ProjectReference Include="..\Deployment.Infrastructure\Deployment.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
 </Project>

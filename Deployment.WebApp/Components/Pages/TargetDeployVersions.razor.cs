@@ -15,8 +15,10 @@ namespace Deployment.WebApp.Components.Pages
         public EnvironmentDto Environment {get;set;}
         public IQueryable<DeployedVersionDto> DeployedVersion{get;set;} 
         
+
         protected override Task OnInitializedAsync()
         {
+            
             TargetVersions = new List<TargetVersionDto>(){
                 new TargetVersionDto { Major = 0, Minot = 0, Build = 1},
                 new TargetVersionDto { Major = 0, Minot = 0, Build = 2},
@@ -47,8 +49,6 @@ namespace Deployment.WebApp.Components.Pages
 
             Environment = Application.Environments.FirstOrDefault(x=>x.Name.Equals("Dev", StringComparison.InvariantCultureIgnoreCase));
             TargetVersion = TargetVersions.FirstOrDefault();
-      
-
             return base.OnInitializedAsync();
         }
     }

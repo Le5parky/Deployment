@@ -1,108 +1,119 @@
 ﻿@page "/targetversion/{Code}"
 @rendermode InteractiveServer
 
+<style>
+    div.mainContainer{
+        margin: 1px;
+        width:82%;
+        overflow: auto;
+    }
+    div.mycontainer {
+        width:100%;
+        overflow:auto;
+    }
+    div.mycontainer div {
+        width:250px;  
+        float:left;
+        margin: 10px;
+    }
 
+
+.custom-data-grid {
+    /* Add your custom styles here */
+    background-color: lightgray;
+    color: white;
+    /* Add any other styles you want to customize */
+}
+.custom-data-grid-row:hover {
+    background-color: rgb(77, 204, 247); /* Add your desired background color */
+    color: white; /* Add your desired text color */
+    /* Add any other styles you want to apply on hover */
+}
+fluent-data-grid-row:hover{
+        background-color: rgb(65, 64, 64);
+}
+
+</style>
+
+<h3>Application Name</h3>
 
 @if (Application == null)
 {
-    <FluentProgressRing>Loading...</FluentProgressRing>
+    <a>Loading...</a>
 }
 else
 {
     <div>
-        <div class="row">
-            <FluentButton class="actionButton" IconStart="@(new Icons.Filled.Size48.Play())"  Title="Deploy"></FluentButton>
-            <FluentButton class="actionButton" IconStart="@(new Icons.Filled.Size48.History())" Title="History"></FluentButton>
-            <FluentButton class="actionButton" IconStart="@(new Icons.Filled.Size48.Add())" Title="Add New Version"></FluentButton>
-            <FluentButton class="actionButton" IconStart="@(new Icons.Filled.Size48.Delete())" Title="Delete version"></FluentButton>
-            <FluentButton class="actionButton" IconStart="@(new Icons.Filled.Size48.ArrowClockwise())" Title="Refresh"></FluentButton>
-        </div>
-        <h3 style="padding-left: 10px;">Target versions</h3>
         <div class="mycontainer">
             <div>
                 <div>
-                    <FluentCombobox Items="@Application.Environments"
-                                    Label="Environments"
+                    <FluentCombobox Items="@Application.Environments" 
+                                    Label="Environments" 
                                     OptionValue="@(i => i.Name.ToString())"
                                     @bind-SelectedOption=@Environment
                                     Height="200px"
-                                    Style="position: fixed; z-index:20;">
+                                    Style="position: fixed; z-index: 6;">
                         <OptionTemplate>
                             @context.Name
                         </OptionTemplate>
                     </FluentCombobox>
                 </div>
                 <div style="margin-top: 30px;">
-                    <FluentCombobox Items="@TargetVersions"
-                                    Label="Versions"
+                    <FluentCombobox Items="@TargetVersions" 
+                                    Label="Target version" 
                                     OptionValue="@(i => i.DisplayValue())"
                                     @bind-SelectedOption=@TargetVersion
                                     Height="200px"
-                                    Style="position: fixed; z-index: 19;">
+                                    Style="position: fixed; z-index: 5;">
                         <OptionTemplate>
                             @context.DisplayValue()
                         </OptionTemplate>
                     </FluentCombobox>
                 </div>
-            </div>
+            </div>   
             <div>
-                <fieldset>
-                <legend >Deploy parameters</legend>
-                <FluentListbox Items="@TargetVersions"
-                               OptionValue="@(i => i.DisplayValue())"
+                <FluentListbox style="height: auto;" 
+                               Items="@TargetVersions" 
+                               OptionValue="@(i =>i.DisplayValue())"
                                @bind-SelectedOption=@TargetVersion
-                               >
-                    <OptionTemplate>
-                        <FluentCheckbox Label="@context.DisplayValue()"></FluentCheckbox>
-                    </OptionTemplate>
+                               Label="Deploy Parameters">
+                        <OptionTemplate>
+                            <FluentCheckbox Label="@context.DisplayValue()"></FluentCheckbox>
+                        </OptionTemplate>
                 </FluentListbox>
-                </fieldset>
             </div>
-
-        </div>
-        <div>
-            <FluentSplitter Orientation="Orientation.Horizontal" Panel1Size="65%">
-                <Panel1 >
-                    <div>
-                        <fieldset>
-                        <legend>Target version to Deploy</legend>
-                        <div>
-                            <FluentDataGrid Items="@TargetVersions2" GridTemplateColumns="0.5fr 0.3fr 0.5fr 0.5fr 0.5fr 0.5fr 0.3fr ">
-                                <PropertyColumn Property="@(p => p.Major)" Title="Name" Sortable="true" Tooltip="true" Align="Align.Center"></PropertyColumn>
-                                <TemplateColumn Align="@Align.Center" Title="Deployble" Sortable="true">
-                                   <FluentCheckbox ReadOnly="true"></FluentCheckbox>
-                                </TemplateColumn>
-                                <PropertyColumn Property="@(p => p.Major)" Title="Author" Sortable="true" Tooltip="true" Align="Align.Center"></PropertyColumn>
-                                <PropertyColumn Property="@(p => p.Major)" Title="Revision" Sortable="true" Tooltip="true" Align="Align.Center"></PropertyColumn>
-                                <PropertyColumn Property="@(p => p.Major)" Title="Time" Sortable="true" Tooltip="true" Align="Align.Center"></PropertyColumn>
-                                <PropertyColumn Property="@(p => p.Minot)" Title="Sourth Path" Sortable="true" Align="Align.Center"></PropertyColumn>
-                                <TemplateColumn Align="@Align.Center" Title="Mark Bild" Sortable="true" >
-                                   <FluentCheckbox></FluentCheckbox>
-                                </TemplateColumn>
+            
+        </div>   
+            <div>
+                <FluentSplitter>
+                    <Panel1>
+                        <div style="margin: 10px; min-width: 400px; outline: 1px solid grey;">
+                            <FluentDataGrid Items="@TargetVersions2" 
+                                            GridTemplateColumns="0.2fr 0.5fr 0.5fr"
+                                            >
+                                <PropertyColumn Property="@(p=>p.Major)" Sortable="true" Tooltip="true" Align="Align.Start"></PropertyColumn> 
+                                <PropertyColumn Property="@(p=>p.Minot)" Sortable="true"></PropertyColumn> 
+                                <PropertyColumn Property="@(p=>p.Build)" Sortable="true"></PropertyColumn> 
                             </FluentDataGrid>
-                        </div>
-                    </fieldset>
-                    </div>
-                </Panel1>
-                <Panel2>
-                    <div>
-                        <fieldset>
-                        <legend>Deployed version per environment</legend>
-                        <FluentDataGrid Items="@DeployedVersion" GridTemplateColumns="1fr 1fr 1fr">
-                            <PropertyColumn Property="@(p => p.Environment)" Title="Evnironment" Align="Align.Center"></PropertyColumn>
-                            <PropertyColumn Property="@(p => p.Version)" Title="Version" Align="Align.Center"></PropertyColumn>
-                            <PropertyColumn Property="@(p => p.Status)" Title="DateTime" Align="Align.Center"></PropertyColumn>
-                            <PropertyColumn Property="@(p => p.Status)" Title="Status" Align="Align.Center"></PropertyColumn>
-                            <TemplateColumn Align="@Align.Center" Title="Mark Version">
-                                   <FluentCheckbox></FluentCheckbox>
-                                </TemplateColumn>
-                        </FluentDataGrid>
-                        </fieldset>
-                    </div>
-                </Panel2>
-            </FluentSplitter>
-
-        </div>
+                        </div>    
+                    </Panel1>
+                    <Panel2>
+                        <div>
+                           <FluentDataGrid Items="@DeployedVersion" Style="margin: 10px; overflow:auto; width: 400px; outline: 1px solid grey;" GridTemplateColumns="1fr 1fr 1fr" >
+                                <PropertyColumn Property="@(p=>p.Environment)" Sortable="true"></PropertyColumn> 
+                                <PropertyColumn Property="@(p=>p.Version)" Sortable="true"></PropertyColumn> 
+                                <PropertyColumn Property="@(p=>p.Status)" Sortable="true"></PropertyColumn> 
+                            </FluentDataGrid>
+                        </div>    
+                    </Panel2>
+                </FluentSplitter> 
+                
+            </div>
     </div>
 
+ 
+    
+
+
+    
 }
