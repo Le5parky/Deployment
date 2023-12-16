@@ -1,0 +1,55 @@
+﻿div.mainContainer {
+	margin: 1px;
+	width: 82%;
+	overflow: auto;
+}
+
+div.mycontainer {
+	width: 100%;
+	overflow: auto;
+}
+
+div.mycontainer div {
+	width: 250px;
+	float: left;
+	padding-left: 5px;
+	margin-bottom: 10px;
+	margin-right: 50px;
+}
+div.row div{
+	width: 250px;
+	float: left;
+	margin: 10px;
+	border: 1px solid lightgray;
+	border-radius: 3px;
+	width: 100%;
+	height: auto;
+	
+}
+::deep fluent-data-grid-row:hover {
+	background-color: rgb(65, 64, 64);
+}
+
+
+::deep fluent-button.actionButton{
+	width: 50px;
+	height: 50px;
+	margin: 5px;
+}
+
+fieldset {
+    margin: 8px;
+    border: 1px solid silver;
+    padding: 8px;    
+    border-radius: 4px;
+}
+
+legend {
+    padding: 0px 10px 10px; 
+	font-size: 18px;
+}
+
+::deep fluent-listbox{
+	border: none;
+	border-style: none;
+}
